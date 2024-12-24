@@ -1,8 +1,11 @@
 const { Builder } = require('selenium-webdriver');
-const LoginPage = require('./WebComponent/LoginPage');
+const LoginPage = require('../WebComponent/LoginPage');
 const assert = require('assert');
+require('dotenv').config();
 
-describe('TestCase 2', function () {
+const baseUrl = process.env.BASE_URL;
+
+describe('TestCase 2 [login] #Smoke', function () {
     this.timeout(40000);
     let driver;
 
@@ -14,7 +17,7 @@ describe('TestCase 2', function () {
     //Test Suite dimulai dengan apa, setiap melakukan tes
     beforeEach(async function (){
         const loginPage = new LoginPage(driver);
-        await loginPage.navigate();
+        await loginPage.navigate(baseUrl);
         await loginPage.login('haha', 'hihi');
     });
 
